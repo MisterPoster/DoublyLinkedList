@@ -1,0 +1,190 @@
+public class StringLinkedList
+{ //START of StringLinkedList
+
+    //INSTANCE
+    private Node head;
+    private Node tail;
+
+    private Node current;
+    private Node previous;
+
+    //CONSTRUCTORS
+    public StringLinkedList ()
+    {
+        head = null;
+        tail = head;
+
+        current = head;
+        previous = head;
+    }
+
+    //ADDERS
+    public void addNodeToHead (String datum)
+    {
+        resetIteration ();
+
+        head = new Node (datum, head);
+
+        if (current != null)
+        {
+            current.backLink = head;
+        } 
+        else
+        {
+            tail = head;
+        }
+    }
+
+    public void addNodeToTail (String datum)
+    {
+        reverseReset ();
+
+        tail = new Node (tail, datum);
+
+        if (current != null)
+        {
+            current.frontLink = tail;
+        }
+    }
+
+    //DELETERS
+    public void deleteNodeFromHead ()
+    {
+        if (head != null)
+        {
+            head = head.frontLink;
+        }
+        else
+        {
+            System.out.println ("You know there's nothing");
+            System.exit (0);
+        }
+    }
+
+    public void deleteNodeFromTail ()
+    {
+        if (tail != null)
+        {
+            tail = tail.backLink;
+            tail.frontLink = null;
+        }
+        else
+        {
+            System.out.println ("You know there's nothing");
+            System.exit (0);
+        }
+    }
+    
+    //LENGTH
+    public int length ()
+    {
+        int count = 0;
+        Node position = head;
+
+        while (position != null)
+        {
+            count++;
+            position = position.frontLink;
+        }
+
+        return count;
+    }
+
+    //ITERATION METHODS
+    public boolean hasNext ()
+    {
+        if (current.frontLink != null)
+        {
+            return true;
+        }
+        
+        return false;
+    }
+    
+    public void goToNext ()
+    {
+        if (current != null)
+        {
+            previous = current.frontLink;
+            current = current.frontLink;
+        }
+        else if (head != null)
+        {
+            System.out.println ("Iteration finished");
+            System.exit (0);
+        }
+        else
+        {
+            System.out.println ("You know this iteration cannot happen");
+            System.exit (0);
+        }
+    }
+
+    public void resetIteration ()
+    {
+        current = head;
+        previous = null;
+    }
+
+    public void reverseReset ()
+    {
+        current = tail;
+    }
+
+    public String getDataAtNode ()
+    {
+        String result = "";
+
+        if (current != null)
+        {
+            result = current.datum;
+        }
+        else
+        {
+            System.out.println ("You knew that there was nothing");
+        }
+    
+        return result;
+    }
+
+    //SHOWLIST
+    public void showList ()
+    {
+        Node position = head;
+
+        while (position != null)
+        {
+            System.out.println (position.datum);
+            position = position.frontLink;
+        }
+    }
+
+    /*
+            NODE CLASS AS SHOWN IN LIST
+    */
+    private class Node
+    { //START of Node
+        private String datum;
+        private Node frontLink;
+        private Node backLink;
+
+        public Node (String datum,  Node frontLink)
+        {
+            this.datum = datum;
+            this.frontLink = frontLink;
+            backLink = null;
+        }
+
+        public Node (Node backLink, String datum)
+        {
+            this.backLink = backLink;
+            this.datum = datum;
+            frontLink = null;
+        }
+
+        public String toString ()
+        {
+            return "Datum: " + datum + " has links " + backLink + " and " + frontLink;
+        }
+    } //END of Node
+} //END of StringLinkedList
