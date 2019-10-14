@@ -1,0 +1,20 @@
+public class DoublyLinkedListDriver
+{ //START of DoublyLinkedListDriver
+  public static void main (String[] args)
+  { //START of main
+      StringLinkedList favoriteBooks = new StringLinkedList ();
+
+      //Mediations, 50 Foods, The Myth of Cthultu, The Odyssey, Looking for Alaska, Intellectual Devotional, SUCCESS Skills
+      favoriteBooks.addNodeToHead ("50 Foods");
+      favoriteBooks.addNodeToHead ("Mediations");
+      favoriteBooks.addNodeToHead ("Success Skills");
+
+      favoriteBooks.addNodeToTail ("Lovercraftian Stories");
+      favoriteBooks.addNodeToTail ("Intellectual Devotional");
+      favoriteBooks.addNodeToTail ("Looking for Alaska");
+
+      favoriteBooks.showList ();
+
+
+  } //END of main
+} //END of DoublyLinkedListDriver
