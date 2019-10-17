@@ -14,7 +14,20 @@ public class DoublyLinkedListDriver
       favoriteBooks.addNodeToTail ("Looking for Alaska");
 
       favoriteBooks.showList ();
+      System.out.println ();
 
+      favoriteBooks.reverseReset ();
+      favoriteBooks.resetIteration ();
+
+      favoriteBooks.deleteNodeFromTail ();
+      favoriteBooks.deleteNodeFromHead ();
+
+      while ( favoriteBooks.hasNext () )
+      {
+          System.out.println (favoriteBooks.getDataAtNode () );
+
+          favoriteBooks.goToNext ();
+      }
 
   } //END of main
 } //END of DoublyLinkedListDriver
